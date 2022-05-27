@@ -1,0 +1,29 @@
+/COM *********************************************************
+/COM File: RES-REST.MAC
+/COM *********************************************************
+/COM Resonant diaphragm pressure sensor
+/COM   make a RESTART analysis on a static solution
+/COM   and evaluate the load dependent freuqencies by using
+/COM   the modified STIFFNESS matrix of the system
+/COM *********************************************************
+
+antype,modal         ! activate prestressed modal analysis
+total,50,1           ! -> use 50 MDOFs, exclude rotational DOFs
+modopt,,3            ! -> use Householder method
+mxpand,3             ! -> expand 3 modes to full DOF set 
+pstres,on            ! -> include prestress effects
+solve                ! start RESTART analysis
+fini                 ! back to BEGIN level
+
+/POST1               ! enter general Post-processor
+set,list             ! list load steps
+set,1,1
+/view,1,1,1,1
+pldi,1
+
+/COM *************** write data to disk files
+/outp,res-rest,dat  ! file name for altered frequencies
+                    ! due to pressure load
+set,list
+/outp,term
+
