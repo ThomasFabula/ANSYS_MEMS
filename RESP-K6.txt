@@ -1,0 +1,63 @@
+/COM *********************************************************
+/COM File: RESP-K6.ANL
+/COM *********************************************************
+/COM analysis options for HARMONIC RESPONSE ANALYSIS (KAN=6)
+/COM geometry defined by file: RESPRES.GEO
+/COM *********************************************************
+
+/COM   ************  define parameters
+kraf=1e-7            ! excitation force
+demf=1e-3            ! damping ratio
+fsta=4000            ! start frequency
+fsto=4400            ! stop frequency
+nanz=30              ! number of iterations
+
+/COM   ************  choose analysis type
+/solu                ! enter SOLUTION
+antype,harmic        ! Reduced Harmonic Response 
+hropt,reduc
+hrout,off            ! PRINT DISPLACEMENTS AS AMPLITUDE,PHASE
+dmprat,demf          ! specify constant damping ratio
+harfrq,fsta,fsto     ! define frequency range for harmonic loads
+nsubst,nanz,,1       ! define number of frequency points 
+outres,all,all
+kbc,1                ! define stepping of loads
+
+/COM   ************  define excitation force
+nsel,s,loc,x,LANG/2        ! select midnode
+nsel,r,loc,y,LANG/2
+f,all,fz,kraf        ! define force (see also D command)
+m,all,uz             ! assign MDOF
+nlist                ! list node with excitation
+total,50,1           ! let choose MDOFs automatically
+allsel               ! reselect all nodes
+solve   		! Starts the solution
+fini    		! exists SOLUTION-phase
+
+Returned to the "BEGIN-level", you will entry the postprocessing using the predefined macro "RESP-K6.MAC":
+
+/COM *********************************************************
+/COM File: RESP-K6.MAC
+/COM *********************************************************
+/COM Resonant diaphragm pressure sensor
+/COM evaluate results of HARMONIC ANALYSIS (KAN=6)
+/COM *********************************************************
+
+/post26              ! enter Time-History-Postprocessor
+/view                ! reset the viewing direction 
+knot=61              ! assign midside node (MESH DEPENDENT)
+file,file,rfrq       ! switch to FILE10.DAT
+nsol,2,knot,u,z      ! specify nodal postdata to be stored
+/grid,1              ! PUT GRID ON PLOTS
+/axlab,y,ampl        ! define y-axis label
+plva,2               ! plot amplitude (variable 2)
+
+plcp,1               ! define phase angle to display
+/axlab,y,phas        ! define y-axis label
+plva,2               ! plot phase angle
+
+prcp,1               ! define output form: AMPLITUDE, PHASE
+/outp,resp-k6,dat    ! switch output data to file: RESP-K6.DAT
+prva,2               ! write data
+/outp,term           ! switch back to screen output
+
