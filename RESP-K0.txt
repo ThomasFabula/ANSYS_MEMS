@@ -1,0 +1,69 @@
+/COM *********************************************************
+/COM File: RESP-K0.ANL
+/COM *********************************************************
+/COM analysis options for STATIC ANALYSIS (KAN=0)
+/COM geometry defined by file: RESPRES.GEO
+/COM *********************************************************
+
+/solu            ! enter Solution-Phase
+antype,static    ! STATIC ANALYSIS  with NONLINEAR options
+nlgeom,on        ! LARGE DEFLECTION SOLUTION 
+sstif,on         ! INCLUDE STRESS STIFFENING
+pstres,on        ! include prestress effects
+nsubst,5,5       ! perform 5 iterations
+ncnv,2           ! terminate analysis if solution does notconverge
+cnvtol,u         ! displacement convergence checking is used
+cnvtol,rot       ! rotation convergence checking is also used
+TOTL=50          ! define number of MDOFs for subsequent MODAL ANALYSIS
+total,TOTL,1     ! TOTAL MASTER D.O.F., NO ROTATIONAL MDOFs
+DRUK=0.005       ! define pressure value [N/mm2], 1 bar = 0.1 N/mm2
+sf,all,PRES,DRUK ! put pressure on diaphragm
+solve   	   ! Start solution  
+fini             ! leave PRE-Processor
+
+Returned to the "BEGIN-level", you will entry the postprocessing using the 
+predefined macro "RESP-K0.MAC" by issuing RESP-K0 for evaluating the results of 
+the STATIC ANALYSIS:
+
+/COM *********************************************************
+/COM File: RESP-K0.MAC
+/COM *********************************************************
+/COM Resonant diaphragm pressure sensor
+/COM evaluate results of STATIC ANALYSIS (KAN=0)
+/COM *********************************************************
+
+/POST1               ! enter general Post-processor
+/VIEW,1,1,1,1        ! define viewing direction
+set,list             ! list load steps
+set                  ! load results (last iteration, if converged)
+
+/COM *************** plot stresses and displacements
+pldi,1               ! plot diaphragm deflection
+top                  ! switch to diaphragm "top"
+plns,s,x             ! plot stress SX
+plns,s,y             ! plot stress SY
+ples,s,1             ! plot stress SIG1, but unaveraged
+middle               ! switch to diaphragm "middle"
+plns,s,x             ! plot membran stress which leads to 
+                     ! stress stiffening and frequency shift
+
+/COM *************** plot along path (middle of diaphragm)
+/view,1,,,1          ! redefine viewing direction
+top
+kno1=56              ! define nodes (MESH DEPENDENT)
+kno2=66              ! define nodes (MESH DEPENDENT)
+lpath,kno1,kno2      ! define a path of nodes
+pdef,stress,s,x      ! defines a path item along the defined path
+plpa,stress          ! plot path: stress SX
+pdef,displ,u,z       ! defines a path item along the defined path
+plpa,displ           ! plot path: displacements
+/COM *************** write data to disk files
+/outp,res-stres,dat  ! file name for STRESS DATA
+prns                 ! write all STRESS DATA
+/outp,term
+/outp,res-disp,dat   ! file name for DISPLACEMENTS
+prdi                 ! write DISPLACEMENTS
+/outp,term
+
+leave Post-processor with "fini"
+
