@@ -1,0 +1,39 @@
+/COM *********************************************************
+/COM File: RESP-K2.ANL
+/COM *********************************************************
+/COM analysis options for MODAL ANALYSIS (KAN=2)
+/COM geometry defined by file: RESPRES.GEO
+/COM *********************************************************
+
+/outp,modal,crm
+
+antype,modal  ! MODE-FREQUENCY ANALYSIS (default: Householder)
+modopt,,5     ! EXPAND FIRST 5 MODE SHAPES
+mxpand,5      
+TOTL=50       ! number of MDOFs 
+total,TOTL,1  ! DEFINE TOTAL MASTER D.O.F., NO ROTATIONAL MDOFs
+
+Before the preprocessing phase and solution set up phase is finished you can look for some model properties, like keypoints, lines, areas, volumes (geometric model) or elements, nodes (FE-model) using available graphic commands. 
+
+solve          ! Starts the solution
+/outp
+fini
+
+Returned to the "BEGIN-level", you will entry the postprocessing using the predefined macro "RESP-K2.MAC" by issuing:  RESP-K2 for evaluating the results of the MODAL ANALYSIS:
+
+/COM *********************************************************
+/COM File: RESP-K2.MAC
+/COM *********************************************************
+/COM Resonant diaphragm pressure sensor
+/COM evaluate results of MODAL ANALYSIS (KAN=2)
+/COM *********************************************************
+
+/POST1               ! enter general Post-processor
+/VIEW,1,1,1,1        ! define the viewing direction
+set,list             ! list eigenfrequencies
+set,1,1              ! load first load step
+plnsol,u,z           ! plot first flexure mode shape
+
+
+load further load steps by issuing: set,1,n  where n is the load step number (here: 1-5) and: plnsol,u,z  plots coressponding mode shapes. Leave Post-processor with "fini"-command.
+
