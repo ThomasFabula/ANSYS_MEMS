@@ -1,12 +1,11 @@
 References
 
 
-[4.1]	Abschlußbericht zum BMFT-Verbund­projekt "Einsatz der Mikromechanik zur Herstellung frequenz­ana­lo­ger Sensoren", VDI-VDE Technologiezentrum Informationstechnik GmbH, Berlin (1993)
+[4.1]	Abschlußbericht zum BMFT-Verbund­projekt "Einsatz der Mikromechanik zur Herstellung frequenz­analoger Sensoren", VDI-VDE Technologiezentrum Informationstechnik GmbH, Berlin (1993)
 
 [4.2]	Th. Fabula, H.-J. Wagner, B. Schmidt, S. Büttgenbach, Triple beam resonant silicon force sensor based on piezoelectric thin films, Sensors and Actuators A, 41-42, (1994) 375-380
 
-[4.3]	H.-J. Wagner, W. H
-artig, S. Büttgenbach, Design and fabrication of resonating AT-quartz dia­phragms as pressure transducers, Sensors and Actuators A, 41-42, (1994) 389-393
+[4.3]	H.-J. Wagner, W. Hartig, S. Büttgenbach, Design and fabrication of resonating AT-quartz diaphragms as pressure transducers, Sensors and Actuators A, 41-42, (1994) 389-393
 
 [4.4]	H. Pavlicek, G. Wachutka, T. Fabula, N. Hey, H. Haffner, T. Feudel, R. Strecker: UETP-MEMS, CAD Tools for MEMS, Course Proceedings, FSRM Neuchatel, Schweiz (1993) 
 
@@ -18,7 +17,7 @@ artig, S. Büttgenbach, Design and fabrication of resonating AT-quartz dia­phra
 
 [4.8]	P.G. Ciarlet, The finite elemente method for elliptical problems, North-Holland, Amsterdam - New York - Oxford (1978)
 
-[4.9]	Th. Fabula, N. Hey, S. Messner: Gekoppelte Feldberechnung eines mikro­mechani­schen Strö­mungssensors, 11. CADFEM Users' Meeting, Bamberg, 27.-29. Oktober 1993 
+[4.9]	Th. Fabula, N. Hey, S. Messner: Gekoppelte Feldberechnung eines mikro­mechani­schen Strömungssensors, 11. CADFEM Users' Meeting, Bamberg, 27.-29. Oktober 1993 
 
 [4.10]	P. Kohnke, ed., ANSYS User's Manual for Revision 5.0, Volume IV, Theory, Swanson Analysis Systems, Inc., Houston, PA, USA (1992)
 
