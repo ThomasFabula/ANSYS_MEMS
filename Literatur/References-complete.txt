@@ -55,4 +55,5 @@ References
 
 [4.27]	A. Schumacher, M. Alavi, Th. Fabula, B. Schmidt, H.-J. Wagner, Monolithic bridge-on-diaphragm microstructure for sensor applications, Micro System Technologies '94, Berlin, Oct. 19.-21. (1994)
 
-[4.28]	Structural Dynamics Research Corporation, Milford, Ohio, USA
+[4.28]	SDRC: Structural Dynamics Research Corporation, Milford, Ohio, USA
+
