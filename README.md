@@ -1,7 +1,7 @@
 # ANSYS_MEMS
 
 ## ANSYS FEM
-- ANSYS program source listings for MEMS-Sensors 
+- ANSYS program source (.F18 files) listings for MEMS-Sensors 
 
 ## Further information
 - https://tfconsult.com/tag/fem/
